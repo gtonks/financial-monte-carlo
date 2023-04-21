@@ -16,6 +16,27 @@ def run_path(start_value: float, t: float, dt: float, factors: list()) -> list:
         t += dt
     return path
 
+
+def report(paths: list):
+    ends = [path[-1] for path in paths]
+    deciles = statistics.quantiles(ends, n=10)
+    quartiles = statistics.quantiles(ends)
+    print(f"Minimum end value: {min(ends)               :.2f}")
+    print(f"Lower 10%:         {deciles[0]              :.2f}")
+    print(f"Lower 75%:         {quartiles[0]            :.2f}")
+    print(f"Median end value:  {quartiles[1]            :.2f}")
+    print(f"Upper 75%:         {quartiles[-1]           :.2f}")
+    print(f"Upper 10%:         {deciles[-1]             :.2f}")
+    print(f"Maximum end value: {max(ends)               :.2f}")
+    print(f"Mean end value:    {statistics.mean(ends)   :.2f}")
+
+
+def graph(paths: list):
+    for path in paths:
+        plt.plot(path)
+    plt.show()
+
+
 n_paths = 200
 start_value = 10_000
 countdown = 10
@@ -26,18 +47,5 @@ paths = list()
 for n_path in range(n_paths):
     paths.append(run_path(start_value, countdown, dt, factors))
 
-ends = [path[-1] for path in paths]
-deciles = statistics.quantiles(ends, n=10)
-quartiles = statistics.quantiles(ends)
-print(f"Minimum end value: {min(ends)               :.2f}")
-print(f"Lower 10%:         {deciles[0]              :.2f}")
-print(f"Lower 75%:         {quartiles[0]            :.2f}")
-print(f"Median end value:  {quartiles[1]            :.2f}")
-print(f"Upper 75%:         {quartiles[-1]           :.2f}")
-print(f"Upper 10%:         {deciles[-1]             :.2f}")
-print(f"Maximum end value: {max(ends)               :.2f}")
-print(f"Mean end value:    {statistics.mean(ends)   :.2f}")
-
-for path in paths:
-    plt.plot(path)
-plt.show()
+report(paths)
+graph(paths)
