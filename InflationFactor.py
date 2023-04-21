@@ -9,6 +9,6 @@ class InflationFactor(Factor):
         self.inflation = inflation
 
     def affect(self, val_before_change: float, t: float) -> float:
-        rate = self.inflation.get_rate()
+        rate = self.inflation.get_rate(t)
         return val_before_change * math.e ** (-rate * t)
     
