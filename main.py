@@ -15,7 +15,7 @@ def run_path(start_value: float, t: float, dt: float, factors: list()) -> list:
         t += dt
     return path
 
-n_paths = 2#10#0
+n_paths = 200
 start_value = 10_000
 countdown = 10
 dt = 1 / 12

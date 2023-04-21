@@ -12,7 +12,6 @@ class VariableInflation(Inflation):
     def get_rate(self, dt: float, **kwargs) -> float:
         self.countdown -= dt
         if self.countdown <= 0:
-            print("Rate change!")
             self.rate = random.gauss(self.mean_rate, self.std)
             self.countdown = 1
         return self.rate
