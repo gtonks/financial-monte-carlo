@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 
-from Inflation import Inflation
+from VariableInflation import VariableInflation
 from InflationFactor import InflationFactor
 
 
@@ -19,7 +19,7 @@ n_paths = 10#0
 start_value = 10_000
 t = 10
 dt = 1
-factors = [InflationFactor(Inflation(0.04))]
+factors = [InflationFactor(VariableInflation(0.04, 0.02))]
 
 paths = list()
 for n_path in range(n_paths):

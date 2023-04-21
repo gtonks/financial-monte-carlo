@@ -3,4 +3,4 @@ class Inflation:
         self.mean_rate = mean_rate
 
     def get_rate(self) -> float:
-        return self.mean_rate
+        raise NotImplementedError
