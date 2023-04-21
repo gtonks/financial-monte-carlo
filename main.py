@@ -3,6 +3,7 @@ import statistics
 
 from VariableInflation import VariableInflation
 from InflationFactor import InflationFactor
+from FixedRateFactor import FixedRateFactor
 
 
 def run_path(start_value: float, t: float, dt: float, factors: list()) -> list:
@@ -37,11 +38,14 @@ def graph(paths: list):
     plt.show()
 
 
-n_paths = 200
+n_paths = 1000
 start_value = 10_000
 countdown = 10
 dt = 1 / 12
-factors = [InflationFactor(VariableInflation(0.04, 0.02))]
+factors = [
+    InflationFactor(VariableInflation(0.04, 0.02)),
+    FixedRateFactor(0.04),
+]
 
 paths = list()
 for n_path in range(n_paths):
